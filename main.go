@@ -10,9 +10,9 @@ import (
 )
 
 var (
-	REGION   = os.Getenv("AWS_S3_REGION")
-	BUCKET   = os.Getenv("AWS_S3_BUCKET")
-	FILENAME = "test.txt"
+	REGION = os.Getenv("AWS_S3_REGION")
+	BUCKET = os.Getenv("AWS_S3_BUCKET")
+	// FILENAME = "test.txt"
 )
 
 func exitErrorf(msg string, args ...interface{}) {
@@ -21,8 +21,7 @@ func exitErrorf(msg string, args ...interface{}) {
 }
 
 func main() {
-	file, _ := os.Open(FILENAME)
-	defer file.Close()
+
 	sess := session.Must(session.NewSession(&aws.Config{Region: aws.String(REGION)}))
 	uploader := s3manager.NewUploader(sess)
 
@@ -37,18 +36,4 @@ func main() {
 	}
 
 	fmt.Printf("Successfully uploaded %q to %q\n", FILENAME, BUCKET)
-
-	// sess := session.Must(session.NewSession(&aws.Config{Region: aws.String(REGION)}))
-	// svc := s3.New(sess)
-	// resp, err := svc.ListObjects(&s3.ListObjectsInput{Bucket: aws.String("com.mykidsreaders.docs.pdf")})
-	// if err != nil {
-	// 	exitErrorf("Unable to list buckets, %v", err)
-	// }
-	// for _, item := range resp.Contents {
-	// 	fmt.Println("Name:         ", *item.Key)
-	// 	fmt.Println("Last modified:", *item.LastModified)
-	// 	fmt.Println("Size:         ", *item.Size)
-	// 	fmt.Println("Storage class:", *item.StorageClass)
-	// 	fmt.Println("")
-	// }
 }

@@ -4,6 +4,7 @@
 ### Go ###
 # Binaries for programs and plugins
 vendor/*/
+testfiles/
 *.exe
 *.dll
 *.so
