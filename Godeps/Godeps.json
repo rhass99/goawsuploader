@@ -124,6 +124,11 @@
 			"Rev": "32e4c1e6bc4e7d0d8451aa6b75200d19e37a536a"
 		},
 		{
+			"ImportPath": "github.com/gorilla/mux",
+			"Comment": "v1.6.0-6-g5ab525f",
+			"Rev": "5ab525f4fb1678e197ae59401e9050fa0b6cb5fd"
+		},
+		{
 			"ImportPath": "github.com/jmespath/go-jmespath",
 			"Comment": "0.2.2-20-gdd801d4",
 			"Rev": "dd801d4f4ce7ac746e7e7b4489d2fa600b3b096b"
