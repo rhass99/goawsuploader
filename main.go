@@ -19,6 +19,7 @@ import (
 var (
 	REGION = os.Getenv("AWS_S3_REGION")
 	BUCKET = os.Getenv("AWS_S3_BUCKET")
+	PORT   = os.Getenv("PORT")
 	// FILENAME = "test.txt"
 )
 
@@ -53,9 +54,13 @@ func handleIncoming(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 
+	if PORT == "" {
+		PORT = "8080"
+	}
+
 	r := mux.NewRouter()
 	r.HandleFunc("/api/uploadfile", handleIncoming).Methods("POST")
-	log.Fatal(http.ListenAndServe(":8080", r))
+	log.Fatal(http.ListenAndServe(":"+PORT, r))
 
 	//sess := session.Must(session.NewSession(&aws.Config{Region: aws.String(REGION)}))
 
