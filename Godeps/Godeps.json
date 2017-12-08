@@ -2,6 +2,9 @@
 	"ImportPath": "github.com/rhass99/goawsuploader",
 	"GoVersion": "go1.9",
 	"GodepVersion": "v79",
+	"Packages": [
+		"./..."
+	],
 	"Deps": [
 		{
 			"ImportPath": "github.com/aws/aws-sdk-go/aws",
@@ -109,7 +112,27 @@
 			"Rev": "f9f7ea2d31dc34870074633a73c622293ad37478"
 		},
 		{
+			"ImportPath": "github.com/aws/aws-sdk-go/private/protocol/restxml",
+			"Comment": "v1.12.43-3-gf9f7ea2d",
+			"Rev": "f9f7ea2d31dc34870074633a73c622293ad37478"
+		},
+		{
 			"ImportPath": "github.com/aws/aws-sdk-go/private/protocol/xml/xmlutil",
+			"Comment": "v1.12.43-3-gf9f7ea2d",
+			"Rev": "f9f7ea2d31dc34870074633a73c622293ad37478"
+		},
+		{
+			"ImportPath": "github.com/aws/aws-sdk-go/service/s3",
+			"Comment": "v1.12.43-3-gf9f7ea2d",
+			"Rev": "f9f7ea2d31dc34870074633a73c622293ad37478"
+		},
+		{
+			"ImportPath": "github.com/aws/aws-sdk-go/service/s3/s3iface",
+			"Comment": "v1.12.43-3-gf9f7ea2d",
+			"Rev": "f9f7ea2d31dc34870074633a73c622293ad37478"
+		},
+		{
+			"ImportPath": "github.com/aws/aws-sdk-go/service/s3/s3manager",
 			"Comment": "v1.12.43-3-gf9f7ea2d",
 			"Rev": "f9f7ea2d31dc34870074633a73c622293ad37478"
 		},
