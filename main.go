@@ -12,7 +12,7 @@ import (
 var (
 	REGION   = os.Getenv("AWS_S3_REGION")
 	BUCKET   = os.Getenv("AWS_S3_BUCKET")
-	FILENAME = "pd_cheat.pdf"
+	FILENAME = "test.txt"
 )
 
 func exitErrorf(msg string, args ...interface{}) {
