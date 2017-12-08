@@ -1,13 +1,20 @@
 package main
 
 import (
-	"fmt"
+	"encoding/json"
+	"log"
+	"net/http"
 	"os"
 
-	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/session"
-	"github.com/aws/aws-sdk-go/service/s3/s3manager"
+	_ "github.com/aws/aws-sdk-go/aws"
+	_ "github.com/aws/aws-sdk-go/aws/session"
+	"github.com/gorilla/mux"
+	"github.com/matryer/respond"
 )
+
+// type OK interface {
+// 	OK() error
+// }
 
 var (
 	REGION = os.Getenv("AWS_S3_REGION")
@@ -15,25 +22,54 @@ var (
 	// FILENAME = "test.txt"
 )
 
-func exitErrorf(msg string, args ...interface{}) {
-	fmt.Fprintf(os.Stderr, msg+"\n", args...)
-	os.Exit(1)
+type FileToUpload struct {
+	FileName    string `json:"filename"`
+	Author      string `json:"author"`
+	Description string `json:"description"`
+	SignedURL   string `json:"-"`
+}
+
+// func (f *FileToUpload) OK() error {
+// 	if f.SignedURL == nil {
+// 		err := errors.New("No Signed URL returned")
+// 		return err
+// 	}
+// 	return nil
+// }
+func decoder(r *http.Request, v *FileToUpload) error {
+	if err := json.NewDecoder(r.Body).Decode(v); err != nil {
+		return err
+	}
+	return nil
+}
+
+func handleIncoming(w http.ResponseWriter, r *http.Request) {
+	var incomingFile FileToUpload
+	if err := decoder(r, &incomingFile); err != nil {
+		respond.With(w, r, http.StatusInternalServerError, err)
+	}
+	respond.With(w, r, http.StatusOK, &incomingFile)
 }
 
 func main() {
 
-	sess := session.Must(session.NewSession(&aws.Config{Region: aws.String(REGION)}))
-	uploader := s3manager.NewUploader(sess)
+	r := mux.NewRouter()
+	r.HandleFunc("/api/uploadfile", handleIncoming).Methods("POST")
+	log.Fatal(http.ListenAndServe(":8080", r))
 
-	_, err := uploader.Upload(&s3manager.UploadInput{
-		Bucket: aws.String(BUCKET),
-		Key:    aws.String(FILENAME),
-		Body:   file,
-	})
-	if err != nil {
-		// Print the error and exit.
-		exitErrorf("Unable to upload %q to %q, %v", FILENAME, BUCKET, err)
-	}
+	//sess := session.Must(session.NewSession(&aws.Config{Region: aws.String(REGION)}))
 
-	fmt.Printf("Successfully uploaded %q to %q\n", FILENAME, BUCKET)
+	// uploader := s3manager.NewUploader(sess)
+
+	// _, err := uploader.Upload(&s3manager.UploadInput{
+	// 	Bucket: aws.String(BUCKET),
+	// 	Key:    aws.String(FILENAME),
+	// 	Body:   file,
+	// })
+	// if err != nil {
+	// 	// Print the error and exit.
+	// 	exitErrorf("Unable to upload %q to %q, %v", FILENAME, BUCKET, err)
+	// }
+
+	// fmt.Printf("Successfully uploaded %q to %q\n", FILENAME, BUCKET)
 }

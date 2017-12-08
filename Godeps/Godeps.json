@@ -109,27 +109,7 @@
 			"Rev": "f9f7ea2d31dc34870074633a73c622293ad37478"
 		},
 		{
-			"ImportPath": "github.com/aws/aws-sdk-go/private/protocol/restxml",
-			"Comment": "v1.12.43-3-gf9f7ea2d",
-			"Rev": "f9f7ea2d31dc34870074633a73c622293ad37478"
-		},
-		{
 			"ImportPath": "github.com/aws/aws-sdk-go/private/protocol/xml/xmlutil",
-			"Comment": "v1.12.43-3-gf9f7ea2d",
-			"Rev": "f9f7ea2d31dc34870074633a73c622293ad37478"
-		},
-		{
-			"ImportPath": "github.com/aws/aws-sdk-go/service/s3",
-			"Comment": "v1.12.43-3-gf9f7ea2d",
-			"Rev": "f9f7ea2d31dc34870074633a73c622293ad37478"
-		},
-		{
-			"ImportPath": "github.com/aws/aws-sdk-go/service/s3/s3iface",
-			"Comment": "v1.12.43-3-gf9f7ea2d",
-			"Rev": "f9f7ea2d31dc34870074633a73c622293ad37478"
-		},
-		{
-			"ImportPath": "github.com/aws/aws-sdk-go/service/s3/s3manager",
 			"Comment": "v1.12.43-3-gf9f7ea2d",
 			"Rev": "f9f7ea2d31dc34870074633a73c622293ad37478"
 		},
@@ -147,6 +127,11 @@
 			"ImportPath": "github.com/jmespath/go-jmespath",
 			"Comment": "0.2.2-20-gdd801d4",
 			"Rev": "dd801d4f4ce7ac746e7e7b4489d2fa600b3b096b"
+		},
+		{
+			"ImportPath": "github.com/matryer/respond",
+			"Comment": "v1.0.1",
+			"Rev": "7ca2372f541a6f714cc7f2a7118b679795b3952c"
 		}
 	]
 }
